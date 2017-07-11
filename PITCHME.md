@@ -13,8 +13,6 @@
 
 ---?code=neuralnet.py
 
----?code=sigmoid.rs
-
 ---?code=mnist.rs
 
 ---?code=mnist.py
