@@ -24,19 +24,18 @@ impl MNIST for Key_files {
     if nomalize  {
       let dataset = (0..1).map ( |dataset| 
         dataset[key] = dataset[key] as f64;
-	    dataset[key]/255.0;
+	    dataset[key]/255.0
       )
     }
 
-    if one_hot_label {
-      dataset[2] = change_hot_label(dataset[2]);
-      dataset[3] = change_hot_label(dataset[3]);
-    }
+   // if one_hot_label {
+   //   dataset[2] = change_hot_label(dataset[2]);
+   //   dataset[3] = change_hot_label(dataset[3]);
+   // }
 
     if !faltten  {
       for key in 0..1 {
-        //reshape(-1,1,28,28)
-        //dataset[key] = dataset[key];
+        //dataset[key] = dataset[key].reshape(-1,1,28,28);
       }
     }
   }
