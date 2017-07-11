@@ -5,13 +5,13 @@ use std::fs::File;
 
 struct Key_files {
     train_img: String,
-    train_label: String,
     test_img: String,
+    train_label: String,
     test_label: String,
 }
 
 trait MNIST {
-  fn load_mnist(&self, normalize: bool, flatten: bool, one_hot_lobel: bool) -> Vec<String>;
+  fn load_mnist(&self, normalize: bool, flatten: bool, one_hot_lobel: bool) -> Key_file ;
 }
 
 impl MNIST for Key_files {
@@ -22,19 +22,19 @@ impl MNIST for Key_files {
     let file_path = Path::new("mnist.pkl").exsits().expect("pkl_file not exist. ");
     let mut dataset = serde_pickle::value_from_reader(file_path);
     if nomalize  {
-      for key in ("train_img", "test_img") {
+      let dataset = (0..1).map ( |dataset| 
         dataset[key] = dataset[key] as f64;
-	    dataset[key] /= 255.0;
-      }
+	    dataset[key]/255.0;
+      )
     }
 
     if one_hot_label {
-      dataset["train_label"] = change_hot_label(dataset["train_label"]);
-      dataset["test_label"] = change_hot_label(dataset["test_label"]);
+      dataset[2] = change_hot_label(dataset[2]);
+      dataset[3] = change_hot_label(dataset[3]);
     }
 
     if !faltten  {
-      for key in ("train_img, test_img") {
+      for key in 0..1 {
         //reshape(-1,1,28,28)
         //dataset[key] = dataset[key];
       }
